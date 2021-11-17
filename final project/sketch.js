@@ -96,7 +96,7 @@ function draw() {
     secondLvl.display();
     thirdLvl.display();
   }
-  if (grid !== "menu") {
+  else {
     displayGrid();
     displayNums();
   }
@@ -114,6 +114,9 @@ function keyPressed() {
   if (key === "3") {
     grid = level3;
     currentLevel = level3;
+  }
+  if (key === ESCAPE) {
+    menu = true;
   }
 }
 
