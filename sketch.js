@@ -210,12 +210,10 @@ function displayGrid() {
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
       fill("white");
-      strokeWeight(1);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-      
+
       if (grid[y][x] === 2) {
         fill("black");
-        strokeWeight(0.5);
         rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === "X") {
@@ -226,4 +224,8 @@ function displayGrid() {
       }
     }
   }
+}
+
+function drawGridLines() {
+  
 }
