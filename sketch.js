@@ -224,8 +224,13 @@ function displayGrid() {
       }
     }
   }
+  drawCageLines();
 }
 
-function drawGridLines() {
-  
+function drawCageLines() {
+  strokeWeight(4);
+  for (let location=0; location<18; location++) {
+    line(0, cellHeight*location, width, cellHeight*location);
+    line(cellWidth*location, 0, cellWidth*location, height);
+  }
 }
