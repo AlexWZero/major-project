@@ -122,7 +122,7 @@ function keyPressed() {
 
 class Button {
   constructor(level, x, y, butWidth, butHeight) {
-    this.level = level;
+    this.purpose = level;
     this.x = x;
     this.y = y;
     this.butWidth = butWidth;
@@ -140,19 +140,19 @@ class Button {
       fill(this.notHoverColor);
     }
     rect(this.x, this.y, this.butWidth, this.butHeight);
-    if (this.level === level1) {
+    if (this.purpose === level1) {
       fill("white");
       textSize(cellWidth*0.75);
       textAlign(CENTER, CENTER);
       text("1", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
     }
-    if (this.level === level2) {
+    if (this.purpose === level2) {
       fill("white");
       textSize(cellWidth*0.75);
       textAlign(CENTER, CENTER);
       text("2", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
     }
-    if (this.level === level3) {
+    if (this.purpose === level3) {
       fill("white");
       textSize(cellWidth*0.75);
       textAlign(CENTER, CENTER);
