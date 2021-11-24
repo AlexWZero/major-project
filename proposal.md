@@ -2,18 +2,16 @@
 
 ## Description
 
-Here I will describe what I'm going to build...
+I am going to be building a nonogram game.
 
-## Must Have List
+## Must Haves
+- nonogram program working
+- a loss condition
+- lines showing properly
+- working menu screen
+- an exit button
 
-- first thing
-- second thing
-- third thing
-- etc
-
-## Nice to Have List
-
-- some stuff
-- other stuf
-- definetly things
-
+## Nice to Have
+- a library of finished games
+- a way for the player to make their own nonograms
+- a way to access those nonograms
