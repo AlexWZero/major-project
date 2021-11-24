@@ -1,5 +1,6 @@
 // Grid Based Game
 
+// Hardcoded Levels
 let level1 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -63,6 +64,7 @@ let level3 = [
   [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
+// Global Variables
 let menu = true;
 let grid = "menu";
 let gridSize = 18;
@@ -76,12 +78,16 @@ let buttonHeight = 100;
 let firstLvl, secondLvl, thirdLvl;
 
 function setup() {
+
+  // Creating Grid Perameters
   if (windowWidth < windowHeight) {
     createCanvas(windowWidth*0.8, windowWidth*0.8);
   }
   else {
     createCanvas(windowHeight*0.8, windowHeight*0.8);
   }
+
+  // Giving Variables Values
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
   firstLvl = new Button(level1, width/5, height/2.3, buttonWidth, buttonHeight);
@@ -91,6 +97,8 @@ function setup() {
 
 function draw() {
   background(220);
+
+  // Displaying Menu or Grid
   if (menu === true) {
     firstLvl.display();
     secondLvl.display();
@@ -102,6 +110,7 @@ function draw() {
   }
 }
 
+// Leaving the Game (WIP)
 function keyPressed() {
   if (key === "1") {
     grid = level1;
@@ -115,11 +124,12 @@ function keyPressed() {
     grid = level3;
     currentLevel = level3;
   }
-  if (key === ESCAPE) {
+  if (key === 27) {
     menu = true;
   }
 }
 
+// The Button Class
 class Button {
   constructor(level, x, y, butWidth, butHeight) {
     this.purpose = level;
@@ -131,6 +141,7 @@ class Button {
     this.notHoverColor = "black";
   }
 
+  // Displaying the Buttons
   display() {
     noStroke();
     if (this.isHover(mouseX, mouseY)) {
@@ -160,12 +171,14 @@ class Button {
     }
   }
 
+  // Seeing if the Mouse is Over the Button
   isHover(x, y) {
     return x >= this.x && x <= this.x + this.butWidth &&
            y >= this.y && y <= this.y + this.butHeight;
   }
 }
 
+// Making the Buttons Work
 function mousePressed() {
   if (firstLvl.isHover(mouseX, mouseY) && menu) {
     grid = level1;
@@ -180,6 +193,7 @@ function mousePressed() {
     menu = false;
   }
 
+  // Making the Game Work
   cellX = Math.floor(mouseX/cellWidth);
   cellY = Math.floor(mouseY/cellHeight);
 
@@ -191,6 +205,7 @@ function mousePressed() {
   }
 }
 
+// Displaying the Numbers
 function displayNums() {
   for (let y=0; y<grid.length; y++) {
     for (let x=0; x<grid[y].length; x++) {
@@ -204,8 +219,11 @@ function displayNums() {
       }
     }
   }
+
+  
 }
 
+// Displaying the Grid
 function displayGrid() {
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
@@ -227,6 +245,7 @@ function displayGrid() {
   drawCageLines();
 }
 
+// Drawing the Grid Lines (WIP)
 function drawCageLines() {
   strokeWeight(4);
   for (let location=0; location<18; location++) {
