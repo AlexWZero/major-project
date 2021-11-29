@@ -100,7 +100,7 @@ function draw() {
 
   // Displaying Menu or Grid
   if (menu === true) {
-    background("grey");
+    background(225); 
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
@@ -111,14 +111,14 @@ function draw() {
   }
 }
 
-// // Leaving the Game (WIP)
+// Leaving the Game (WIP)
 // function keyPressed() {
 //   if (key === 27) {
 //     menu = true;
 //   }
 // }
 
-// // The Button Class
+// The Button Class
 class Button {
   constructor(level, x, y, butWidth, butHeight) {
     this.purpose = level;
@@ -167,20 +167,20 @@ class Button {
   }
 }
 
-// // Making the Buttons Work
+// Making the Buttons Work
 function mousePressed() {
-  // if (firstLvl.isHover(mouseX, mouseY) && menu) {
-  //   grid = level1;
-  //   menu = false;
-  // }
-  // else if (secondLvl.isHover(mouseX, mouseY) && menu) {
-  //   grid = level2;
-  //   menu = false;
-  // }
-  // else if (thirdLvl.isHover(mouseX, mouseY) && menu) {
-  //   grid = level3;
-  //   menu = false;
-  // }
+  if (firstLvl.isHover(mouseX, mouseY) && menu) {
+    grid = level1;
+    menu = false;
+  }
+  else if (secondLvl.isHover(mouseX, mouseY) && menu) {
+    grid = level2;
+    menu = false;
+  }
+  else if (thirdLvl.isHover(mouseX, mouseY) && menu) {
+    grid = level3;
+    menu = false;
+  }
 
   // Making the Game Work
   cellX = Math.floor(mouseX/cellWidth);
@@ -194,7 +194,7 @@ function mousePressed() {
   }
 }
 
-// // Displaying the Numbers
+// Displaying the Numbers (WIP)
 // function displayNums() {
 //   for (let y=0; y<grid.length; y++) {
 //     for (let x=0; x<grid[y].length; x++) {
@@ -208,12 +208,11 @@ function mousePressed() {
 //       }
 //     }
 //   }
-
-  
 // }
 
 // Displaying the Grid
 function displayGrid() {
+  drawGridLines();
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
       fill("white");
@@ -232,12 +231,12 @@ function displayGrid() {
       }
     }
   }
-  drawGridLines();
 }
 
 // Drawing the Grid Lines (WIP)
 function drawGridLines() {
   strokeWeight(1);
+  stroke("black");
   for (let location=0; location<gridSize; location++) {
     line(0, cellHeight*location, width, cellHeight*location);
     line(cellWidth*location, 0, cellWidth*location, height);
