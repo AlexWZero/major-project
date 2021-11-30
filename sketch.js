@@ -99,24 +99,18 @@ function setup() {
 function draw() {
 
   // Displaying Menu or Grid
-  if (menu === true) {
+  if (menu) {
     background(225); 
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
   }
-  else {
+  else if (!menu) {
     displayGrid();
+    lossCondition();
     // displayNums();
   }
 }
-
-// Leaving the Game (WIP)
-// function keyPressed() {
-//   if (key === 27) {
-//     menu = true;
-//   }
-// }
 
 // The Button Class
 class Button {
@@ -140,24 +134,24 @@ class Button {
       fill(this.notHoverColor);
     }
     rect(this.x, this.y, this.butWidth, this.butHeight);
-    // if (this.purpose === level1) {
-    //   textSize(cellWidth*0.75);
-    //   fill("white");
-    //   textAlign(CENTER, CENTER);
-    //   text("1", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
-    // }
-    // if (this.purpose === level2) {
-    //   textSize(cellWidth*0.75);
-    //   fill("white");
-    //   textAlign(CENTER, CENTER);
-    //   text("2", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
-    // }
-    // if (this.purpose === level3) {
-    //   textSize(cellWidth*0.75);
-    //   fill("white");
-    //   textAlign(CENTER, CENTER);
-    //   text("3", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
-    // }
+    if (this.purpose === level1) {
+      stroke("white");
+      textSize(cellWidth*0.75);
+      textAlign(CENTER, CENTER);
+      text("1", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
+    }
+    if (this.purpose === level2) {
+      stroke("white");
+      textSize(cellWidth*0.75);
+      textAlign(CENTER, CENTER);
+      text("2", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
+    }
+    if (this.purpose === level3) {
+      stroke("white");
+      textSize(cellWidth*0.75);
+      textAlign(CENTER, CENTER);
+      text("3", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
+    }
   }
 
   // Seeing if the Mouse is Over the Button
@@ -194,21 +188,29 @@ function mousePressed() {
   }
 }
 
+// Exit Mid-Game
+function keyPressed() {
+  if (keyCode === ESCAPE) {
+    grid = "menu";
+    menu = true;
+  }
+}
+
 // Displaying the Numbers (WIP)
-// function displayNums() {
-//   for (let y=0; y<grid.length; y++) {
-//     for (let x=0; x<grid[y].length; x++) {
-//       let counting = 0;
-//       if (grid[y][x] === 1 || grid[y][x] === 2) {
-//         counting++;
-//       }
-//       else {
-//         nums.push(counting);
-//         counting = 0;
-//       }
-//     }
-//   }
-// }
+function displayNums() {
+  for (let y=0; y<grid.length; y++) {
+    for (let x=0; x<grid[y].length; x++) {
+      let counting;
+      if (grid[y][x] === 1 || grid[y][x] === 2) {
+        counting++;
+      }
+      else {
+        nums.push(counting);
+        counting = 0;
+      }
+    }
+  }
+}
 
 // Displaying the Grid
 function displayGrid() {
@@ -233,7 +235,7 @@ function displayGrid() {
   }
 }
 
-// Drawing the Grid Lines (WIP)
+// Drawing the Grid Lines
 function drawGridLines() {
   strokeWeight(1);
   stroke("black");
@@ -243,4 +245,20 @@ function drawGridLines() {
   }
   line(width, 0, width, height);
   line(0, height, width, height);
+}
+
+// Setting Loss Condition (WIP)
+function lossCondition() {
+  let count = 0;
+
+  for (let y=0; y<gridSize; y++) {
+    for (let x=0; x<gridSize[y]; x++) {
+      if (grid[y][x] === "X") {
+        count++;
+      }
+      if (count >= 3) {
+        menu = true;
+      }
+    }
+  }
 }
