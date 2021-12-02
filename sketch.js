@@ -1,4 +1,4 @@
-// Grid Based Game
+// Nonogram Game
 
 // Hardcoded Levels
 let level1 = [
