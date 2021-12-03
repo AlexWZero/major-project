@@ -66,6 +66,7 @@ let level3 = [
 
 // Global Variables
 let menu = true;
+let returnMenu = false;
 let grid = "menu";
 let gridSize = 18;
 let cellHeight, cellWidth;
@@ -75,7 +76,9 @@ let nums = [];
 let currentLevel;
 let buttonWidth = 100;
 let buttonHeight = 100;
-let firstLvl, secondLvl, thirdLvl;
+let returnButtonWidth = 200;
+let returnButtonHeight = 100;
+let firstLvl, secondLvl, thirdLvl, returnToMenu, backToMenu;
 
 function setup() {
 
@@ -91,9 +94,10 @@ function setup() {
   grid = level1;
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
-  firstLvl = new Button(level1, width/5, height/2.3, buttonWidth, buttonHeight);
-  secondLvl = new Button(level2, width/2.3, height/2.3, buttonWidth, buttonHeight);
-  thirdLvl = new Button(level3, width/1.5, height/2.3, buttonWidth, buttonHeight);
+  firstLvl = new Button(level1, width/4, height/2, buttonWidth, buttonHeight, "grey", "black");
+  secondLvl = new Button(level2, width/2, height/2, buttonWidth, buttonHeight, "grey", "black");
+  thirdLvl = new Button(level3, width/1.33, height/2, buttonWidth, buttonHeight, "grey", "black");
+  returnToMenu = new Button(backToMenu, width/2, height/2, returnButtonWidth, returnButtonHeight, "grey", "black");
 }
 
 function draw() {
@@ -109,19 +113,23 @@ function draw() {
     displayGrid();
     lossCondition();
     // displayNums();
+
+    if (returnMenu) {
+      returnToMenu.display();
+    }
   }
 }
 
 // The Button Class
 class Button {
-  constructor(level, x, y, butWidth, butHeight) {
+  constructor(level, x, y, butWidth, butHeight, hoverColor, notHoverColor) {
     this.purpose = level;
     this.x = x;
     this.y = y;
     this.butWidth = butWidth;
     this.butHeight = butHeight;
-    this.hoverColor = "grey";
-    this.notHoverColor = "black";
+    this.hoverColor = hoverColor;
+    this.notHoverColor = notHoverColor;
   }
 
   // Displaying the Buttons
@@ -133,6 +141,7 @@ class Button {
     else {
       fill(this.notHoverColor);
     }
+    rectMode(CENTER);
     rect(this.x, this.y, this.butWidth, this.butHeight);
     if (this.purpose === level1) {
       stroke("white");
@@ -156,8 +165,8 @@ class Button {
 
   // Seeing if the Mouse is Over the Button
   isHover(x, y) {
-    return x >= this.x && x <= this.x + this.butWidth &&
-           y >= this.y && y <= this.y + this.butHeight;
+    return x >= this.x - this.butWidth/2 && x <= this.x + this.butWidth/2 &&
+           y >= this.y - this.butHeight/2 && y <= this.y + this.butHeight/2;
   }
 }
 
@@ -190,9 +199,8 @@ function mousePressed() {
 
 // Exit Mid-Game
 function keyPressed() {
-  if (keyCode === ESCAPE) {
-    grid = "menu";
-    menu = true;
+  if (keyCode === ESCAPE && !menu) {
+    returnMenu = true;
   }
 }
 
@@ -219,6 +227,7 @@ function displayGrid() {
     for (let x=0; x<gridSize; x++) {
       fill("white");
       strokeWeight(1);
+      rectMode(CORNER);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
 
       if (grid[y][x] === 2) {
