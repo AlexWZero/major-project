@@ -70,8 +70,7 @@ let returnMenu = false;
 let grid = "menu";
 let gridSize = 18;
 let cellHeight, cellWidth;
-let cellX;
-let cellY;
+let cellX, cellY;
 let nums = [];
 let currentLevel;
 let buttonWidth = 100;
@@ -110,8 +109,8 @@ function draw() {
     thirdLvl.display();
   }
   else if (!menu) {
-    displayGrid();
     lossCondition();
+    displayGrid();
     // displayNums();
 
     if (returnMenu) {
@@ -266,7 +265,7 @@ function lossCondition() {
         count++;
       }
       if (count >= 3) {
-        menu = true;
+        returnMenu = true;
       }
     }
   }
