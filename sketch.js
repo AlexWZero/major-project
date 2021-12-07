@@ -65,6 +65,9 @@ let level3 = [
 ];
 
 // Global Variables
+let level1Unsave = level1;
+let level2Unsave = level2;
+let level3Unsave = level3;
 let menu = true;
 let returnMenu = false;
 let grid = "menu";
@@ -103,6 +106,9 @@ function draw() {
 
   // Displaying Menu or Grid
   if (menu) {
+    level1 = level1Unsave;
+    level2 = level2Unsave;
+    level3 = level3Unsave;
     background(225); 
     firstLvl.display();
     secondLvl.display();
@@ -183,15 +189,22 @@ function mousePressed() {
     grid = level3;
     menu = false;
   }
+  
+  // Making Exit Button Work
+  if (returnToMenu.isHover(mouseX, mouseY) && returnMenu) {
+    grid = "menu";
+    menu = true;
+    returnMenu = false;
+  }
 
   // Making the Game Work
   cellX = Math.floor(mouseX/cellWidth);
   cellY = Math.floor(mouseY/cellHeight);
 
-  if (grid[cellY][cellX] === 1 && !menu) {
+  if (grid[cellY][cellX] === 1 && !menu && !returnMenu) {
     grid[cellY][cellX] = 2;
   }
-  if (grid[cellY][cellX] === 0 && !menu) {
+  if (grid[cellY][cellX] === 0 && !menu && !returnMenu) {
     grid[cellY][cellX] = "X";
   }
 }
@@ -260,7 +273,7 @@ function lossCondition() {
   let count = 0;
 
   for (let y=0; y<gridSize; y++) {
-    for (let x=0; x<gridSize[y]; x++) {
+    for (let x=0; x<gridSize; x++) {
       if (grid[y][x] === "X") {
         count++;
       }
