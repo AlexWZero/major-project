@@ -65,9 +65,9 @@ let level3 = [
 ];
 
 // Global Variables
-let level1Unsave = level1;
-let level2Unsave = level2;
-let level3Unsave = level3;
+let level1Unsave = JSON.parse(JSON.stringify(level1));
+let level2Unsave = JSON.parse(JSON.stringify(level2));
+let level3Unsave = JSON.parse(JSON.stringify(level3));
 let menu = true;
 let returnMenu = false;
 let grid = "menu";
@@ -106,9 +106,6 @@ function draw() {
 
   // Displaying Menu or Grid
   if (menu) {
-    level1 = level1Unsave;
-    level2 = level2Unsave;
-    level3 = level3Unsave;
     background(225); 
     firstLvl.display();
     secondLvl.display();
