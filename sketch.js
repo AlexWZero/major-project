@@ -146,26 +146,26 @@ class Button {
     rectMode(CENTER);
     rect(this.x, this.y, this.butWidth, this.butHeight);
     if (this.purpose === level1) {
-      stroke("white");
-      textSize(cellWidth*0.75);
+      fill("white");
+      textSize(this.butWidth*0.75);
       textAlign(CENTER, CENTER);
-      text("1", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
+      text(1, this.x, this.y+7);
     }
     if (this.purpose === level2) {
-      stroke("white");
-      textSize(cellWidth*0.75);
+      fill("white");
+      textSize(this.butWidth*0.75);
       textAlign(CENTER, CENTER);
-      text("2", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
+      text("2", this.x, this.y+7);
     }
     if (this.purpose === level3) {
-      stroke("white");
-      textSize(cellWidth*0.75);
+      fill("white");
+      textSize(this.butWidth*0.75);
       textAlign(CENTER, CENTER);
-      text("3", this.x*this.butWidth + this.butWidth/2, this.y*this.butHeight + this.butHeight/2);
+      text("3", this.x, this.y+7);
     }
   }
 
-  // Seeing if the Mouse is Over the Button
+  // Seeing if the Mouse is Hovering Over the Button
   isHover(x, y) {
     return x >= this.x - this.butWidth/2 && x <= this.x + this.butWidth/2 &&
            y >= this.y - this.butHeight/2 && y <= this.y + this.butHeight/2;
@@ -174,6 +174,7 @@ class Button {
 
 // Making the Buttons Work
 function mousePressed() {
+
   if (firstLvl.isHover(mouseX, mouseY) && menu) {
     grid = level1;
     menu = false;
@@ -198,11 +199,13 @@ function mousePressed() {
   cellX = Math.floor(mouseX/cellWidth);
   cellY = Math.floor(mouseY/cellHeight);
 
-  if (grid[cellY][cellX] === 1 && !menu && !returnMenu) {
-    grid[cellY][cellX] = 2;
-  }
-  if (grid[cellY][cellX] === 0 && !menu && !returnMenu) {
-    grid[cellY][cellX] = "X";
+  if (grid !== "menu") {
+    if (grid[cellY][cellX] === 1 && !menu && !returnMenu) {
+      grid[cellY][cellX] = 2;
+    }
+    if (grid[cellY][cellX] === 0 && !menu && !returnMenu) {
+      grid[cellY][cellX] = "X";
+    }
   }
 }
 
@@ -265,7 +268,7 @@ function drawGridLines() {
   line(0, height, width, height);
 }
 
-// Setting Loss Condition (WIP)
+// Setting Loss Condition
 function lossCondition() {
   let count = 0;
 
