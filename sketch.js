@@ -163,6 +163,12 @@ class Button {
       textAlign(CENTER, CENTER);
       text("3", this.x, this.y+7);
     }
+    if (this.purpose === backToMenu) {
+      fill("white");
+      textSize(40);
+      textAlign(CENTER, CENTER);
+      text("RETURN", this.x, this.y+5);
+    }
   }
 
   // Seeing if the Mouse is Hovering Over the Button
