@@ -114,7 +114,7 @@ function draw() {
   else if (!menu) {
     lossCondition();
     displayGrid();
-    // displayNums();
+    displayNums();
 
     if (returnMenu) {
       returnToMenu.display();
@@ -224,9 +224,9 @@ function keyPressed() {
 
 // Displaying the Numbers (WIP)
 function displayNums() {
+  let counting;
   for (let y=0; y<grid.length; y++) {
     for (let x=0; x<grid[y].length; x++) {
-      let counting;
       if (grid[y][x] === 1 || grid[y][x] === 2) {
         counting++;
       }
@@ -235,6 +235,10 @@ function displayNums() {
         counting = 0;
       }
     }
+    for (let i=0; i<nums.length; i++) {
+      text(nums[i], (nums.length-1)*-cellWidth, y*cellHeight);
+    }
+    nums = [];
   }
 }
 
