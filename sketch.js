@@ -115,6 +115,7 @@ function draw() {
     lossCondition();
     displayGrid();
     displayNums();
+    // millis();
 
     if (returnMenu) {
       returnToMenu.display();
