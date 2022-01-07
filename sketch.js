@@ -107,6 +107,7 @@ function draw() {
   // Displaying Menu or Grid
   if (menu) {
     background(225); 
+    title();
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
@@ -114,7 +115,7 @@ function draw() {
   else if (!menu) {
     lossCondition();
     displayGrid();
-    displayNums();
+    // displayNums();
     // millis();
 
     if (returnMenu) {
@@ -179,6 +180,12 @@ class Button {
   }
 }
 
+function title() {
+  textAlign(CENTER);
+  fill("black");
+  text("NONOGRAM", width/2, height/5);
+}
+
 // Making the Buttons Work
 function mousePressed() {
 
@@ -237,7 +244,8 @@ function displayNums() {
       }
     }
     for (let i=0; i<nums.length; i++) {
-      text(nums[i], (nums.length-1)*-cellWidth, y*cellHeight);
+      let textNum = nums[i];
+      text(textNum, (nums.length-1)*-cellWidth, y*cellHeight);
     }
     nums = [];
   }
