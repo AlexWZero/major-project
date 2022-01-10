@@ -96,10 +96,10 @@ function setup() {
   grid = level1;
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
-  firstLvl = new Button(level1, width/4, height/2, buttonWidth, buttonHeight, "grey", "black");
-  secondLvl = new Button(level2, width/2, height/2, buttonWidth, buttonHeight, "grey", "black");
-  thirdLvl = new Button(level3, width/1.33, height/2, buttonWidth, buttonHeight, "grey", "black");
-  returnToMenu = new Button(backToMenu, width/2, height/2, returnButtonWidth, returnButtonHeight, "grey", "black");
+  firstLvl = new Button(level1, width/4, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
+  secondLvl = new Button(level2, width/2, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
+  thirdLvl = new Button(level3, width/1.33, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
+  returnToMenu = new Button(backToMenu, width/2, height/2, returnButtonWidth, returnButtonHeight, color(117, 187, 220), color(137, 207, 240));
 }
 
 function draw() {
@@ -116,7 +116,6 @@ function draw() {
     lossCondition();
     displayGrid();
     // displayNums();
-    // millis();
 
     if (returnMenu) {
       returnToMenu.display();
@@ -177,6 +176,12 @@ class Button {
   isHover(x, y) {
     return x >= this.x - this.butWidth/2 && x <= this.x + this.butWidth/2 &&
            y >= this.y - this.butHeight/2 && y <= this.y + this.butHeight/2;
+  }
+}
+
+function levelLoad() {
+  if (menu = true) {
+    level1 = level1Unsave;
   }
 }
 
