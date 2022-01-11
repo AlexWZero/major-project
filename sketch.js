@@ -111,6 +111,7 @@ function draw() {
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
+    // levelLoad();
   }
   else if (!menu) {
     lossCondition();
@@ -180,9 +181,9 @@ class Button {
 }
 
 function levelLoad() {
-  if (menu = true) {
-    level1 = level1Unsave;
-  }
+  level1 = level1Unsave;
+  level2 = level2Unsave;
+  level3 = level3Unsave;
 }
 
 function title() {
@@ -237,22 +238,16 @@ function keyPressed() {
 
 // Displaying the Numbers (WIP)
 function displayNums() {
-  let counting;
-  for (let y=0; y<grid.length; y++) {
-    for (let x=0; x<grid[y].length; x++) {
+  let count;
+  for (let y=0; y<gridSize; y++) {
+    for (let x=0; x<gridSize; x++) {
       if (grid[y][x] === 1 || grid[y][x] === 2) {
-        counting++;
+        count++;
       }
-      else {
-        nums.push(counting);
-        counting = 0;
+      if (count >= 3) {
+        returnMenu = true;
       }
     }
-    for (let i=0; i<nums.length; i++) {
-      let textNum = nums[i];
-      text(textNum, (nums.length-1)*-cellWidth, y*cellHeight);
-    }
-    nums = [];
   }
 }
 
