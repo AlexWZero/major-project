@@ -81,9 +81,15 @@ let buttonHeight = 100;
 let returnButtonWidth = 200;
 let returnButtonHeight = 100;
 let firstLvl, secondLvl, thirdLvl, returnToMenu, backToMenu;
+let clickSound, misclickSound;
+
+// Loading Click Noises
+function preload() {
+  clickSound = loadSound("assets/Menu Selection Click.wav");
+  misclickSound = loadSound("assets/Misclick Sound.wav");
+}
 
 function setup() {
-
   // Creating Grid Perameters
   if (windowWidth < windowHeight) {
     createCanvas(windowWidth*0.8, windowWidth*0.8);
@@ -103,7 +109,6 @@ function setup() {
 }
 
 function draw() {
-
   // Displaying Menu or Grid
   if (menu) {
     background(225); 
@@ -180,12 +185,14 @@ class Button {
   }
 }
 
+// Resets the Level When at the Menu Screen (WIP)
 function levelLoad() {
   level1 = level1Unsave;
   level2 = level2Unsave;
   level3 = level3Unsave;
 }
 
+// Adds the Title to the Menu Screen
 function title() {
   textAlign(CENTER);
   fill("black");
@@ -194,22 +201,26 @@ function title() {
 
 // Making the Buttons Work
 function mousePressed() {
-
+  // Making Menu Buttons Work
   if (firstLvl.isHover(mouseX, mouseY) && menu) {
+    clickSound.play();
     grid = level1;
     menu = false;
   }
   else if (secondLvl.isHover(mouseX, mouseY) && menu) {
+    clickSound.play();
     grid = level2;
     menu = false;
   }
   else if (thirdLvl.isHover(mouseX, mouseY) && menu) {
+    clickSound.play();
     grid = level3;
     menu = false;
   }
   
   // Making Exit Button Work
   if (returnToMenu.isHover(mouseX, mouseY) && returnMenu) {
+    clickSound.play();
     grid = "menu";
     menu = true;
     returnMenu = false;
@@ -221,15 +232,17 @@ function mousePressed() {
 
   if (grid !== "menu") {
     if (grid[cellY][cellX] === 1 && !menu && !returnMenu) {
+      clickSound.play();
       grid[cellY][cellX] = 2;
     }
     if (grid[cellY][cellX] === 0 && !menu && !returnMenu) {
+      misclickSound.play();
       grid[cellY][cellX] = "X";
     }
   }
 }
 
-// Exit Mid-Game
+// Bring up Return Button Mid-Game
 function keyPressed() {
   if (keyCode === ESCAPE && !menu) {
     returnMenu = true;
@@ -239,6 +252,7 @@ function keyPressed() {
 // Displaying the Numbers (WIP)
 function displayNums() {
   let count;
+
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
       if (grid[y][x] === 1 || grid[y][x] === 2) {
@@ -270,6 +284,15 @@ function displayGrid() {
         textSize(cellWidth*0.75);
         textAlign(CENTER, CENTER);
         text(grid[y][x], x*cellWidth + cellWidth/2, y*cellHeight + cellHeight/2);
+      }
+      else if (grid[y][x] === 0) {
+        let raNum = random(100);
+        let count = 0;
+
+        if (raNum < 34 && count < 30) {
+          grid[y][x] = "X";
+          count++;
+        }
       }
     }
   }
