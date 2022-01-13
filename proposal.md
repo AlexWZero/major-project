@@ -6,10 +6,13 @@ I am going to be building a nonogram game.
 
 ## Must Haves
 - nonogram program working
-- a loss condition
-- lines showing properly
-- working menu screen
-- an exit button
+- display numbers on the side
+- stop the square being selected when pressing a menu button
+- a save function
+- a loss condition(done)
+- lines showing properly(done)
+- working menu screen (done)
+- an exit button (done)
 
 ## Nice to Have
 - a library of finished games

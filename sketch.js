@@ -82,6 +82,7 @@ let returnButtonWidth = 200;
 let returnButtonHeight = 100;
 let firstLvl, secondLvl, thirdLvl, returnToMenu, backToMenu;
 let clickSound, misclickSound;
+let state;
 
 // Loading Click Noises
 function preload() {
@@ -111,14 +112,19 @@ function setup() {
 function draw() {
   // Displaying Menu or Grid
   if (menu) {
+    state = "starting";
     background(225); 
     title();
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
-    // levelLoad();
+    // loadLevel();
   }
   else if (!menu) {
+    if (state === "starting") {
+      preClickedBoxes();
+      state = "playing";
+    }
     lossCondition();
     displayGrid();
     // displayNums();
@@ -186,7 +192,7 @@ class Button {
 }
 
 // Resets the Level When at the Menu Screen (WIP)
-function levelLoad() {
+function loadLevel() {
   level1 = level1Unsave;
   level2 = level2Unsave;
   level3 = level3Unsave;
@@ -265,9 +271,29 @@ function displayNums() {
   }
 }
 
+// Getting Preclicked Boxes on the Grid
+function preClickedBoxes() {
+  let count = 0;
+
+  for (let y=0; y<gridSize; y++) {
+    for (let x=0; x<gridSize; x++) {
+      if (grid[y][x] === 0) {
+        let raNum = random(100);
+    
+        if (raNum < 51 && count < 324) {
+          grid[y][x] = "XX";
+          count++;
+        }
+      }
+    }
+  }
+}
+
 // Displaying the Grid
 function displayGrid() {
+  // Calling Grid Lines Function
   drawGridLines();
+
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
       fill("white");
@@ -285,14 +311,11 @@ function displayGrid() {
         textAlign(CENTER, CENTER);
         text(grid[y][x], x*cellWidth + cellWidth/2, y*cellHeight + cellHeight/2);
       }
-      else if (grid[y][x] === 0) {
-        let raNum = random(100);
-        let count = 0;
-
-        if (raNum < 34 && count < 30) {
-          grid[y][x] = "X";
-          count++;
-        }
+      else if (grid[y][x] === "XX") {
+        fill("black");
+        textSize(cellWidth*0.75);
+        textAlign(CENTER, CENTER);
+        text("X", x*cellWidth + cellWidth/2, y*cellHeight + cellHeight/2);
       }
     }
   }
