@@ -70,6 +70,7 @@ let level2Unsave = JSON.parse(JSON.stringify(level2));
 let level3Unsave = JSON.parse(JSON.stringify(level3));
 let menu = true;
 let returnMenu = false;
+let gramComplete = false;
 let grid = "menu";
 let gridSize = 18;
 let cellHeight, cellWidth;
@@ -80,8 +81,8 @@ let buttonWidth = 100;
 let buttonHeight = 100;
 let returnButtonWidth = 200;
 let returnButtonHeight = 100;
-let firstLvl, secondLvl, thirdLvl, returnToMenu, backToMenu;
 let clickSound, misclickSound;
+let firstLvl, secondLvl, thirdLvl, returnToMenu, winning;
 let state;
 
 // Loading Click Noises
@@ -103,14 +104,15 @@ function setup() {
   grid = level1;
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
-  firstLvl = new Button(level1, width/4, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
-  secondLvl = new Button(level2, width/2, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
-  thirdLvl = new Button(level3, width/1.33, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
-  returnToMenu = new Button(backToMenu, width/2, height/2, returnButtonWidth, returnButtonHeight, color(117, 187, 220), color(137, 207, 240));
+  firstLvl = new Button("level1", width/4, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
+  secondLvl = new Button("level2", width/2, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
+  thirdLvl = new Button("level3", width/1.33, height/2, buttonWidth, buttonHeight, color(117, 187, 220), color(137, 207, 240));
+  returnToMenu = new Button("backToMenu", width/2, height/2, returnButtonWidth, returnButtonHeight, color(117, 187, 220), color(137, 207, 240));
+  winning = new Button("complete", width/2, height/2, returnButtonWidth, returnButtonHeight, color(117, 187, 220), color(137, 207, 240));
 }
 
 function draw() {
-  // Displaying Menu or Grid
+  // Displaying Menu
   if (menu) {
     state = "starting";
     background(225); 
@@ -120,14 +122,23 @@ function draw() {
     thirdLvl.display();
     // loadLevel();
   }
+
+  // Dsiplaying Grid
   else if (!menu) {
+    // Loading the PreClicked Tiles
     if (state === "starting") {
       preClickedBoxes();
       state = "playing";
     }
+    
+    winCondition();
     lossCondition();
     displayGrid();
     // displayNums();
+    
+    if (gramComplete) {
+      winning.display();
+    }
 
     if (returnMenu) {
       returnToMenu.display();
@@ -158,33 +169,39 @@ class Button {
     }
     rectMode(CENTER);
     rect(this.x, this.y, this.butWidth, this.butHeight);
-    if (this.purpose === level1) {
+    if (this.purpose === "level1") {
       fill("white");
       textSize(this.butWidth*0.75);
       textAlign(CENTER, CENTER);
-      text(1, this.x, this.y+7);
+      text("1", this.x, this.y+7);
     }
-    if (this.purpose === level2) {
+    if (this.purpose === "level2") {
       fill("white");
       textSize(this.butWidth*0.75);
       textAlign(CENTER, CENTER);
       text("2", this.x, this.y+7);
     }
-    if (this.purpose === level3) {
+    if (this.purpose === "level3") {
       fill("white");
       textSize(this.butWidth*0.75);
       textAlign(CENTER, CENTER);
       text("3", this.x, this.y+7);
     }
-    if (this.purpose === backToMenu) {
+    if (this.purpose === "backToMenu") {
       fill("white");
       textSize(40);
       textAlign(CENTER, CENTER);
       text("RETURN", this.x, this.y+5);
     }
+    if (this.purpose === "complete") {
+      fill("white");
+      textSize(40);
+      textAlign(CENTER, CENTER);
+      text("WINNER", this.x, this.y+5);
+    }
   }
 
-  // Seeing if the Mouse is Hovering Over the Button
+  // Checking if the Mouse is Hovering Over the Button
   isHover(x, y) {
     return x >= this.x - this.butWidth/2 && x <= this.x + this.butWidth/2 &&
            y >= this.y - this.butHeight/2 && y <= this.y + this.butHeight/2;
@@ -224,7 +241,7 @@ function mousePressed() {
     menu = false;
   }
   
-  // Making Exit Button Work
+  // Making Exit Buttons Work
   if (returnToMenu.isHover(mouseX, mouseY) && returnMenu) {
     clickSound.play();
     grid = "menu";
@@ -232,7 +249,14 @@ function mousePressed() {
     returnMenu = false;
   }
 
-  // Making the Game Work
+  else if (winning.isHover(mouseX, mouseY) && returnMenu) {
+    clickSound.play();
+    grid = "menu";
+    menu = true;
+    gramComplete = false;
+  }
+
+  // Making the Your Clicks Work
   cellX = Math.floor(mouseX/cellWidth);
   cellY = Math.floor(mouseY/cellHeight);
 
@@ -250,7 +274,7 @@ function mousePressed() {
 
 // Bring up Return Button Mid-Game
 function keyPressed() {
-  if (keyCode === ESCAPE && !menu) {
+  if (keyCode === ESCAPE && !menu && !gramComplete) {
     returnMenu = true;
   }
 }
@@ -305,13 +329,7 @@ function displayGrid() {
         fill("black");
         rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
-      else if (grid[y][x] === "X") {
-        fill("black");
-        textSize(cellWidth*0.75);
-        textAlign(CENTER, CENTER);
-        text(grid[y][x], x*cellWidth + cellWidth/2, y*cellHeight + cellHeight/2);
-      }
-      else if (grid[y][x] === "XX") {
+      else if (grid[y][x] === "X" || grid[y][x] === "XX") {
         fill("black");
         textSize(cellWidth*0.75);
         textAlign(CENTER, CENTER);
@@ -346,5 +364,21 @@ function lossCondition() {
         returnMenu = true;
       }
     }
+  }
+}
+
+// Setting Win Condition
+function winCondition() {
+  let count = 0;
+
+  for (let y=0; y<gridSize; y++) {
+    for (let x=0; x<gridSize; x++) {
+      if (grid[y][x] === 1) {
+        count++;
+      }
+    }
+  }
+  if (count <= 0) {
+    gramComplete = true;
   }
 }
