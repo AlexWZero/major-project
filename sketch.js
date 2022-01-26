@@ -101,6 +101,7 @@ function setup() {
   }
 
   // Giving Variables Values
+  state = "starting";
   grid = level1;
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
@@ -114,7 +115,6 @@ function setup() {
 function draw() {
   // Displaying Menu
   if (menu) {
-    state = "starting";
     background(225); 
     title();
     firstLvl.display();
