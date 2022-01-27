@@ -84,6 +84,7 @@ let returnButtonHeight = 100;
 let clickSound, misclickSound;
 let firstLvl, secondLvl, thirdLvl, returnToMenu, winning;
 let state;
+let lastLevel;
 
 // Loading Click Noises
 function preload() {
@@ -123,10 +124,10 @@ function draw() {
     // loadLevel();
   }
 
-  // Dsiplaying Grid
+  // Displaying Grid
   else if (!menu) {
     // Loading the PreClicked Tiles
-    if (state === "starting") {
+    if (state === "starting" && lastLevel !== grid) {
       preClickedBoxes();
       state = "playing";
     }
@@ -249,11 +250,11 @@ function mousePressed() {
     returnMenu = false;
   }
 
-  else if (winning.isHover(mouseX, mouseY) && returnMenu) {
+  if (winning.isHover(mouseX, mouseY) && returnMenu) {
     clickSound.play();
     grid = "menu";
     menu = true;
-    gramComplete = false;
+    returnMenu = false;
   }
 
   // Making the Your Clicks Work
@@ -379,6 +380,6 @@ function winCondition() {
     }
   }
   if (count <= 0) {
-    gramComplete = true;
+    returnMenu = true;
   }
 }
