@@ -71,6 +71,9 @@ let level3Unsave = JSON.parse(JSON.stringify(level3));
 let menu = true;
 let returnMenu = false;
 let gramComplete = false;
+let level1Load = false;
+let level2Load = false;
+let level3Load = false;
 let grid = "menu";
 let gridSize = 18;
 let cellHeight, cellWidth;
@@ -84,7 +87,6 @@ let returnButtonHeight = 100;
 let clickSound, misclickSound;
 let firstLvl, secondLvl, thirdLvl, returnToMenu, winning;
 let state;
-let lastLevel;
 
 // Loading Click Noises
 function preload() {
@@ -121,15 +123,22 @@ function draw() {
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
-    // loadLevel();
   }
 
   // Displaying Grid
   else if (!menu) {
     // Loading the PreClicked Tiles
-    if (state === "starting" && lastLevel !== grid) {
+    if (!level1Load && grid === level1) {
       preClickedBoxes();
-      state = "playing";
+      level1Load = true;
+    }
+    if (!level2Load && grid === level2) {
+      preClickedBoxes();
+      level2Load = true;
+    }
+    if (!level3Load && grid === level3) {
+      preClickedBoxes();
+      level3Load = true;
     }
     
     winCondition();
