@@ -2,10 +2,9 @@
 
 // Hardcoded Levels
 let level1 = [
-
-  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
-  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "2", "3", " ", " ", " "]
-  [" ", " ", " ", " ", " ", "4", "6", "8", "9", "10", "10", "10", "10", "10", "10", "5", "3", "5", "4", " ", " "]
+  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "2", "3", " ", " ", " "],
+  [" ", " ", " ", " ", " ", "4", "6", "8", "9", "10", "10", "10", "10", "10", "10", "5", "3", "5", "4", " ", " "],
   [" ", " ", " ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [" ", " ", " ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [" ", " ", " ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -27,9 +26,9 @@ let level1 = [
 ];
 
 let level2 = [
-  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "3", "3", "9", "8", " ", " ", " ", " ", " ", " ", " "]
-  [" ", " ", " ", " ", " ", " ", " ", " ", "9", "9", "4", "4", "2", "2", "7", "5", "2", "1", "2", " ", " "]
-  [" ", " ", " ", " ", "6", "10", "12", "14", "2", "2", "2", "1", "1", "1", "1", "1", "2", "2", "2", "6", " "]
+  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "3", "3", "9", "8", " ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " ", " ", "9", "9", "4", "4", "2", "2", "7", "5", "2", "1", "2", " ", " "],
+  [" ", " ", " ", " ", "6", "10", "12", "14", "2", "2", "2", "1", "1", "1", "1", "1", "2", "2", "2", "6", " "],
   [" ", " ", " ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [" ", " ", "6", 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
   [" ", " ", "10", 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
@@ -51,30 +50,30 @@ let level2 = [
 ];
 
 let level3 = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " ", "2", "4", "5", "2", " ", " ", " ", "1", "1", "1", " ", " ", " ", " "],
+  [" ", " ", " ", "2", "3", "5", "6", "4", "4", "4", "7", "8", "6", "3", "2", "3", "3", "4", "4", "3", "2"],
+  [" ", "1", "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1],
+  [" ", "1", "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1],
+  [" ", "1", "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0],
+  [" ", " ", "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
+  [" ", " ", "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+  [" ", " ", "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+  [" ", " ", "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "6", 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "8", 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", "7", "2", 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", "4", "4", 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", "4", "4", 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", "4", "2", 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "6", 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "5", 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "3", 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [" ", " ", "2", 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
 // Global Variables
-let level1Unsave = JSON.parse(JSON.stringify(level1));
-let level2Unsave = JSON.parse(JSON.stringify(level2));
-let level3Unsave = JSON.parse(JSON.stringify(level3));
 let menu = true;
 let returnMenu = false;
 let gramComplete = false;
@@ -82,7 +81,7 @@ let level1Load = false;
 let level2Load = false;
 let level3Load = false;
 let grid = "menu";
-let gridSize = 18;
+let gridSize = 21;
 let cellHeight, cellWidth;
 let cellX, cellY;
 let nums = [];
@@ -96,11 +95,6 @@ let firstLvl, secondLvl, thirdLvl, returnToMenu, winning;
 let state;
 let lastTimeClicked;
 
-// Loading Click Noises
-function preload() {
-  clickSound = loadSound("assets/Menu Selection Click.wav");
-  misclickSound = loadSound("assets/Misclick Sound.wav");
-}
 
 function setup() {
   // Creating Grid Perameters
@@ -110,7 +104,7 @@ function setup() {
   else {
     createCanvas(windowHeight*0.8, windowHeight*0.8);
   }
-
+  
   // Giving Variables Values
   state = "starting";
   grid = level1;
@@ -123,11 +117,17 @@ function setup() {
   winning = new Button("complete", width/2, height/2, returnButtonWidth, returnButtonHeight, color(117, 187, 220), color(137, 207, 240));
 }
 
+// Loading Click Noises
+function preload() {
+  clickSound = loadSound("assets/Menu Selection Click.wav");
+  misclickSound = loadSound("assets/Misclick Sound.wav");
+}
+
 function draw() {
   // Displaying Menu
   if (menu) {
     background(225); 
-    title();
+    titleAndRules();
     firstLvl.display();
     secondLvl.display();
     thirdLvl.display();
@@ -234,10 +234,14 @@ function loadLevel() {
 }
 
 // Adds the Title to the Menu Screen
-function title() {
+function titleAndRules() {
   textAlign(CENTER);
   fill("black");
   text("NONOGRAM", width/2, height/5);
+  fill("black");
+  text("click all of the spaces", width/2, height/2+510);
+  fill("black");
+  text("and you have 5 misclicks, have fun.", width/2, height/2+520)
 }
 
 // Making the Buttons Work
@@ -282,7 +286,6 @@ function mousePressed() {
   cellY = Math.floor(mouseY/cellHeight);
 
   if (grid !== "menu" && millis() > lastTimeClicked + 500) {
-    console.log(millis);
     if (grid[cellY][cellX] === 1 && !menu && !returnMenu) {
       clickSound.play();
       grid[cellY][cellX] = 2;
@@ -301,21 +304,21 @@ function keyPressed() {
   }
 }
 
-// Displaying the Numbers (WIP)
-function displayNums() {
-  let count;
+// Displaying the Numbers (WIP) I tried to make a program that would count the clickable squares, but ran out of time
+// function displayNums() {
+//   let count;
 
-  for (let y=0; y<gridSize; y++) {
-    for (let x=0; x<gridSize; x++) {
-      if (grid[y][x] === 1 || grid[y][x] === 2) {
-        count++;
-      }
-      if (count >= 3) {
-        returnMenu = true;
-      }
-    }
-  }
-}
+//   for (let y=0; y<gridSize; y++) {
+//     for (let x=0; x<gridSize; x++) {
+//       if (grid[y][x] === 1 || grid[y][x] === 2) {
+//         count++;
+//       }
+//       if (count >= 3) {
+//         returnMenu = true;
+//       }
+//     }
+//   }
+// }
 
 // Getting Preclicked Boxes on the Grid
 function preClickedBoxes() {
@@ -339,26 +342,38 @@ function preClickedBoxes() {
 function displayGrid() {
   // Calling Grid Lines Function
   drawGridLines();
-
+  
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
-      fill("white");
-      strokeWeight(1);
-      rectMode(CORNER);
-      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-
+      
       if (grid[y][x] === 2) {
         fill("black");
+        strokeWeight(1);
+        rectMode(CORNER);
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+      }
+      else if (grid[y][x] === 0 || grid[y][x] === 1) {
+        fill("white");
+        strokeWeight(1);
+        rectMode(CORNER);
         rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === "X" || grid[y][x] === "XX") {
+        fill("white");
+        strokeWeight(1);
+        rectMode(CORNER);
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
         fill("black");
         textSize(cellWidth*0.75);
         textAlign(CENTER, CENTER);
         text("X", x*cellWidth + cellWidth/2, y*cellHeight + cellHeight/2);
       }
-      else if (grid[y][x] === "X" || grid[y][x] === "XX") {
+      else if (grid[y][x] !== 1 && grid[y][x] !== 0 && grid[y][x] !== 2 && grid[y][x] !== "X" && grid[y][x] !== "XX") {
         let numVar = grid[y][x];
+        fill("grey");
+        strokeWeight(1);
+        rectMode(CORNER);
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
         fill("black");
         textSize(cellWidth*0.75);
         textAlign(CENTER, CENTER);
